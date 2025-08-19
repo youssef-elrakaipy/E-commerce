@@ -63,8 +63,6 @@ export async function handleLogIn(formData) {
     maxAge: 60 * 60 * 24,
   });
 
-  console.log("token from login", result.token);
-
   redirect("/");
 }
 
