@@ -28,7 +28,6 @@ const wishlistSlice = createSlice({
           id: newItem.id,
           title: newItem.title,
           price: newItem.price,
-          // image: newItem.imageCover,
           imageCover: newItem.imageCover,
         });
       } else {
@@ -47,11 +46,11 @@ const wishlistSlice = createSlice({
 
     builder.addCase(getUserWishlist.fulfilled, (state, action) => {
       const data = action.payload;
+      state.liked = {};
       state.items = data.data.map((item) => ({
         id: item.id,
         title: item.title,
         price: item.price,
-        // image: item.imageCover,
         imageCover: item.imageCover,
       }));
       data.data.forEach((item) => {

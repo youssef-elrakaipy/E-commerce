@@ -92,9 +92,9 @@ export default function ProductCart({ product }) {
   }
 
   function onToggleHeart(product) {
-    dispatch(toggleWishlist(product.id));
-    if (liked[product.id]) {
-      dispatch(removeFromWishlist(product.id));
+    dispatch(toggleWishlist(product._id));
+    if (liked[product._id]) {
+      dispatch(removeFromWishlist(product._id));
     } else {
       dispatch(addToWishlist(product));
     }
@@ -149,7 +149,7 @@ export default function ProductCart({ product }) {
               </button>
 
               <Image
-                src={liked[product.id] ? redHeart : blackHeart}
+                src={liked[product._id] ? redHeart : blackHeart}
                 alt="Heart"
                 width={25}
                 height={25}

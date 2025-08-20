@@ -8,7 +8,6 @@ import Menu from "@/public/burger-menu.svg";
 import LanguageSelector from "./LanguageSelector";
 import MobileMenu from "./MobileMenu.jsx";
 import SignInLinks from "./SignInLinks";
-
 import { useDispatch } from "react-redux";
 import { getUserCart } from "@/store/cartThunks";
 import { getUserWishlist } from "@/store/WishlistThuncks";
@@ -35,7 +34,7 @@ export default function NavBar({ token }) {
       dispatch(getUserCart());
       dispatch(getUserWishlist());
     }
-  }, [dispatch]);
+  }, [dispatch, token]);
 
   function handleMenuToggle() {
     setIsMenuOpen((prev) => !prev);

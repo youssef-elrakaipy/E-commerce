@@ -8,14 +8,9 @@ import Button from "@/ui/Button";
 import { LoginValidate } from "@/utils/Validation";
 import Alert from "@/ui/Alert";
 import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
-import { getUserCart } from "@/store/cartThunks";
-import { getUserWishlist } from "@/store/WishlistThuncks";
 
 export default function LoginForm() {
   const [errors, setErrors] = useState({});
-
-  const dispatch = useDispatch();
 
   const router = useRouter();
 
@@ -47,8 +42,6 @@ export default function LoginForm() {
     if (result.error) {
       setErrors({ general: result.error });
     } else {
-      dispatch(getUserCart());
-      dispatch(getUserWishlist());
       router.refresh();
     }
   }
