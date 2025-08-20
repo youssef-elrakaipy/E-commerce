@@ -9,7 +9,6 @@ import {
   faSquareMinus,
 } from "@fortawesome/free-regular-svg-icons";
 import {
-  addToCart,
   clearCart,
   removeSpecificItem,
   updateCartProductQuantity,
@@ -19,6 +18,7 @@ import Link from "next/link";
 export default function Cart() {
   const cartItems = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const loading = useSelector((state) => state.cart.loading);
   const dispatch = useDispatch();
 
   function increaseQuantity(item) {
@@ -99,19 +99,31 @@ export default function Cart() {
               </div>
 
               <div className="text-[#00ac00dc] flex gap-2 items-center">
-                <FontAwesomeIcon
-                  icon={faSquarePlus}
-                  size="2xl"
-                  className="cursor-pointer"
+                <button
+                  disabled={loading[item.id]}
                   onClick={() => increaseQuantity(item)}
-                />
+                  className={` ${
+                    loading[item.id]
+                      ? "text-gray-400 cursor-not-allowed"
+                      : "text-green-600 cursor-pointer"
+                  }`}
+                >
+                  <FontAwesomeIcon icon={faSquarePlus} size="2xl" />
+                </button>
+
                 <span>{item.quantity}</span>
-                <FontAwesomeIcon
-                  icon={faSquareMinus}
-                  size="2xl"
-                  className="cursor-pointer"
+
+                <button
+                  disabled={loading[item.id]}
+                  className={`  ${
+                    loading[item.id]
+                      ? "text-gray-400 cursor-not-allowed"
+                      : "text-green-600 cursor-pointer"
+                  }`}
                   onClick={() => decreaseQuantity(item)}
-                />
+                >
+                  <FontAwesomeIcon icon={faSquareMinus} size="2xl" />
+                </button>
               </div>
             </div>
           ))}

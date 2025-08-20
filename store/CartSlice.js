@@ -39,7 +39,7 @@ const cartSlice = createSlice({
         }
         state.totalQuantity = res.numOfCartItems;
         state.totalPrice = res.data.totalCartPrice;
-        const productId = newItem.id || newItem._id;
+        const productId = newItem._id;
         state.loading[productId] = false;
       });
 
@@ -59,18 +59,24 @@ const cartSlice = createSlice({
       }
     });
 
-    builder.addCase(updateCartProductQuantity.fulfilled, (state, action) => {
-      const { res, id, count } = action.payload;
-      const existingItem = state.items.find((item) => item.id === id);
-      if (existingItem) {
-        existingItem.quantity = count;
-      }
-      state.totalQuantity = res.numOfCartItems;
-      state.totalPrice = res.data.totalCartPrice;
-      if (count === 0) {
-        state.items = state.items.filter((item) => item.id !== id);
-      }
-    });
+    builder
+      .addCase(updateCartProductQuantity.pending, (state, action) => {
+        const product = action.meta.arg;
+        state.loading[product.id] = true;
+      })
+      .addCase(updateCartProductQuantity.fulfilled, (state, action) => {
+        const { res, id, count } = action.payload;
+        const existingItem = state.items.find((item) => item.id === id);
+        if (existingItem) {
+          existingItem.quantity = count;
+        }
+        state.totalQuantity = res.numOfCartItems;
+        state.totalPrice = res.data.totalCartPrice;
+        if (count === 0) {
+          state.items = state.items.filter((item) => item.id !== id);
+        }
+        state.loading[id] = false;
+      });
 
     builder.addCase(getUserCart.fulfilled, (state, action) => {
       const data = action.payload;
