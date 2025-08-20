@@ -14,13 +14,12 @@ export default async function Home() {
   const cookieStor = await cookies();
   const token = cookieStor.get("token");
 
-  const category = await GetCategories();
-  const product = await GetProduct();
-
   if (!token) {
     redirect("/login");
   }
 
+  const category = await GetCategories();
+  const product = await GetProduct();
   return (
     <>
       <header className="w-full mt-7">
