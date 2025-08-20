@@ -31,9 +31,9 @@ export default function ProductCart({ product }) {
 
   return (
     <section className="grid grid-cols-[repeat(auto-fill,minmax(300px,1fr))] gap-7">
-      {product.map((product, index) => (
+      {product.map((product) => (
         <div
-          key={index}
+          key={product._id}
           className="min-w-[300px] h-[400px] border-2 border-[#08ff0857] rounded-[5px] px-4 group flex flex-col"
         >
           <Link href={`/product-details/${product._id}`}>

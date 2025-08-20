@@ -15,7 +15,7 @@ export default async function ProductDetails({ params }) {
     redirect("/login");
   }
 
-  const id = params.id;
+  const { id } = await params;
 
   const product = await GetSpecificProduct(id);
 
