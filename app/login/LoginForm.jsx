@@ -7,12 +7,9 @@ import Input from "@/ui/Input";
 import Button from "@/ui/Button";
 import { LoginValidate } from "@/utils/Validation";
 import Alert from "@/ui/Alert";
-import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
   const [errors, setErrors] = useState({});
-
-  const router = useRouter();
 
   const [formValues, setFormValues] = useState({
     email: "",
@@ -41,8 +38,6 @@ export default function LoginForm() {
 
     if (result.error) {
       setErrors({ general: result.error });
-    } else {
-      router.refresh();
     }
   }
 
