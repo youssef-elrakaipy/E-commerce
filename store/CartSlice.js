@@ -39,7 +39,7 @@ const cartSlice = createSlice({
         }
         state.totalQuantity = res.numOfCartItems;
         state.totalPrice = res.data.totalCartPrice;
-        const productId = newItem._id;
+        const productId = newItem._id || newItem.id;
         state.loading[productId] = false;
       });
 
