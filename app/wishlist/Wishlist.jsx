@@ -36,9 +36,9 @@ export default function Wishlist() {
         )}
 
         <div>
-          {wishlistItems.map((item, index) => (
+          {wishlistItems.map((item) => (
             <div
-              key={index}
+              key={item.id}
               className="flex flex-col sm:flex-row items-center justify-between border-b-2 border-[#dbdbdbbd] pb-4 mb-4"
             >
               <div className="flex flex-col sm:flex-row items-center gap-2">
@@ -65,17 +65,23 @@ export default function Wishlist() {
                 </div>
               </div>
 
-              <button
-                onClick={() => addItemToCart(item)}
-                disabled={loading[item.id]}
-                className={`w-[150px] py-2 rounded flex justify-center text-white transition duration-300 ${
-                  loading[item.id]
-                    ? "bg-gray-400 cursor-not-allowed"
-                    : "bg-green-600 hover:bg-green-800 cursor-pointer"
-                }`}
-              >
-                {loading[item.id] ? "Loading..." : "Add to cart"}
-              </button>
+              <div className="relative">
+                <button
+                  onClick={() => addItemToCart(item)}
+                  disabled={loading[item.id]}
+                  className={`w-[150px] py-2 rounded flex justify-center text-white transition duration-300 px-4 ${
+                    loading[item.id]
+                      ? "bg-gray-400 cursor-not-allowed"
+                      : "bg-green-600 hover:bg-green-800 cursor-pointer"
+                  }`}
+                >
+                  {loading[item.id] ? "Loading..." : "Add to cart"}
+                </button>
+
+                {loading[item.id] && (
+                  <span className="w-5 h-5 border-4 border-gray-100 border-t-transparent rounded-full absolute top-[10px] right-2.5 transition duration-300 animate-spin"></span>
+                )}
+              </div>
             </div>
           ))}
         </div>

@@ -1,4 +1,4 @@
-import ProductCart from "@/components/ProductCart";
+import ProductCart from "@/components/product-card/ProductCard";
 import { getSomeProduct } from "@/fetching-data/Fetching";
 import Numbers from "./number";
 import { cookies } from "next/headers";

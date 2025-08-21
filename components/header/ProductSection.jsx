@@ -1,4 +1,4 @@
-import ProductCart from "../ProductCart";
+import ProductCart from "../product-card/ProductCard";
 
 export default function ProductSection({ product }) {
   return (
