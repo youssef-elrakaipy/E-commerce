@@ -70,7 +70,13 @@ export default function ForgotPasswordForm() {
           )}
 
           <div>
-            <Button>{sendPassword ? "Send Code" : "Verify Code"}</Button>
+            <Button
+              disabled={
+                sendPassword ? !formValues.email : formValues.code.length < 6
+              }
+            >
+              {sendPassword ? "Send Code" : "Verify Code"}
+            </Button>
           </div>
         </form>
       </div>
