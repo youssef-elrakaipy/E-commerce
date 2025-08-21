@@ -5,6 +5,7 @@ import "./globals.css";
 import { cookies } from "next/headers";
 import Providers from "@/store/Provider";
 import Footer from "@/components/Footer";
+import ToastProvider from "@/components/Toast";
 
 export default async function RootLayout({ children }) {
   const cookieStore = await cookies();
@@ -16,6 +17,7 @@ export default async function RootLayout({ children }) {
         <Providers>
           <NavBar token={token?.value} />
           {children}
+          <ToastProvider />
           <Footer />
         </Providers>
       </body>

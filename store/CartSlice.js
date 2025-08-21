@@ -15,6 +15,7 @@ const cartSlice = createSlice({
     totalPrice: 0,
     loading: {},
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(addToCart.pending, (state, action) => {

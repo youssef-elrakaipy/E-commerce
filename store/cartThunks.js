@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { Message } from "@/ui/Message";
 
 const getToken = () => {
   return document.cookie
@@ -33,6 +34,8 @@ const addToCart = createAsyncThunk(
     }
 
     const data = await response.json();
+
+    Message(" Added to cart");
 
     return {
       res: data,
