@@ -1,3 +1,5 @@
+"use client";
+
 import { toast, Bounce } from "react-toastify";
 
 export function Message(text) {

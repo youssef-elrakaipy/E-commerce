@@ -13,8 +13,6 @@ const addToCart = createAsyncThunk(
   async (newItem, { rejectWithValue }) => {
     const token = getToken();
 
-    console.log("token from addtocart", token);
-
     const response = await fetch(
       "https://ecommerce.routemisr.com/api/v1/cart",
       {
