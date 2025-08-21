@@ -63,6 +63,9 @@ const clearCart = createAsyncThunk(
     }
 
     const data = await response.json();
+
+    Message("Cart cleared");
+
     return data;
   }
 );
@@ -88,6 +91,8 @@ const removeSpecificItem = createAsyncThunk(
     }
 
     await response.json();
+
+    Message("Removed from cart");
 
     return id;
   }
@@ -117,6 +122,8 @@ const updateCartProductQuantity = createAsyncThunk(
     }
 
     const data = await response.json();
+
+    Message("Cart quantity updated");
 
     return {
       res: data,

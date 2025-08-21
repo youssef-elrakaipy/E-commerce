@@ -1,4 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
+import { Message } from "@/ui/Message";
 
 const getToken = () => {
   return document.cookie
@@ -29,6 +30,9 @@ const addToWishlist = createAsyncThunk(
       return rejectWithValue("Failed to send wishlist data");
     }
     const data = await response.json();
+
+    Message("Added to wishlist");
+
     return {
       res: data,
       newItem,
@@ -54,6 +58,9 @@ const removeFromWishlist = createAsyncThunk(
       return rejectWithValue("Failed to delete product data");
     }
     await response.json();
+
+    Message("Removed from wishlist");
+
     return id;
   }
 );
